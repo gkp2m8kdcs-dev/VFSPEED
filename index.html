@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VFSPEED — A Private Personal Finance Coach</title>
+  <meta name="description" content="VFSPEED is a private, on-device personal finance app that quantifies your financial anxiety and helps you turn small commitments into real progress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --bg-soft: #11141b;
+      --card: #161a23;
+      --border: #232836;
+      --text: #e7eaf1;
+      --text-soft: #9aa3b5;
+      --accent: #6ee7b7;
+      --accent-2: #38bdf8;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --radius: 14px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(56, 189, 248, 0.10), transparent 60%),
+                  radial-gradient(900px 600px at 0% 10%, rgba(110, 231, 183, 0.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 13, 18, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      font-size: 18px;
+    }
+    .brand .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+    .nav-links {
+      display: flex; gap: 22px; font-size: 14px; color: var(--text-soft);
+    }
+    .nav-links a { color: var(--text-soft); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--text);
+      color: #0b0d12;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-cta:hover { background: #ffffff; text-decoration: none; }
+
+    /* Hero */
+    .hero {
+      padding: 96px 0 72px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(110, 231, 183, 0.08);
+      border: 1px solid rgba(110, 231, 183, 0.25);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.4vw, 60px);
+      line-height: 1.08;
+      margin: 0 0 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p.lead {
+      font-size: 18px;
+      color: var(--text-soft);
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b0d12;
+    }
+    .btn-primary:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text-soft); text-decoration: none; }
+
+    .hero-mock {
+      margin: 56px auto 0;
+      max-width: 880px;
+      background: linear-gradient(180deg, var(--card), var(--bg-soft));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .mock-row { display: flex; gap: 16px; align-items: stretch; flex-wrap: wrap; }
+    .mock-score {
+      flex: 1 1 220px;
+      background: rgba(110, 231, 183, 0.06);
+      border: 1px solid rgba(110, 231, 183, 0.2);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .mock-score .label { font-size: 12px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; }
+    .mock-score .num { font-size: 56px; font-weight: 800; margin-top: 8px; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mock-bars { flex: 2 1 360px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .bar { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-soft); }
+    .bar .name { width: 140px; }
+    .bar .track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+    .bar .fill { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; }
+    .bar .val { width: 44px; text-align: right; color: var(--text); font-weight: 600; }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    section h2 {
+      font-size: clamp(28px, 3.4vw, 40px);
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      font-weight: 800;
+    }
+    section .sub {
+      color: var(--text-soft);
+      max-width: 720px;
+      margin: 0 0 40px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover { border-color: #2d3344; transform: translateY(-2px); }
+    .card .icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--accent-2);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .card h3 {
+      font-size: 17px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      counter-reset: step;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      position: relative;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      top: 16px; right: 18px;
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 1px;
+    }
+    .step h4 { margin: 0 0 6px; font-size: 16px; }
+    .step p { margin: 0; font-size: 14px; color: var(--text-soft); }
+
+    /* Privacy callout */
+    .privacy-callout {
+      background: linear-gradient(180deg, rgba(110, 231, 183, 0.06), transparent 70%), var(--card);
+      border: 1px solid rgba(110, 231, 183, 0.2);
+      border-radius: 18px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .privacy-callout h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .privacy-callout p {
+      margin: 0 0 12px;
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+    .privacy-callout ul {
+      margin: 0; padding-left: 18px; color: var(--text-soft); font-size: 14px;
+    }
+    .privacy-callout ul li { margin-bottom: 6px; }
+    @media (max-width: 720px) {
+      .privacy-callout { grid-template-columns: 1fr; }
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+
+    /* Support */
+    .support-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .support-box h3 { margin: 0 0 8px; font-size: 20px; }
+    .support-box p { margin: 0 0 12px; color: var(--text-soft); font-size: 14px; }
+    .support-box .links { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+    @media (max-width: 720px) {
+      .support-box { grid-template-columns: 1fr; }
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { color: var(--text-soft); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 0 48px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>VFSPEED</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+        <a href="#support">Support</a>
+      </nav>
+      <a class="nav-cta" href="mailto:mahalingamhjk9@icloud.com">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">Private · On-device · No accounts</span>
+        <h1>Quantify the <span class="grad">anxiety</span> behind your money.</h1>
+        <p class="lead">
+          VFSPEED turns your income, savings, and spending into a single financial-anxiety score,
+          then helps you place small, measurable bets on yourself — and keeps score.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#how">See how it works</a>
+          <a class="btn btn-ghost" href="#privacy">Read the privacy promise</a>
+        </div>
+
+        <div class="hero-mock" aria-hidden="true">
+          <div class="mock-row">
+            <div class="mock-score">
+              <div class="label">Anxiety Score</div>
+              <div class="num">37</div>
+              <div style="color: var(--text-soft); font-size: 13px;">Lower is calmer</div>
+            </div>
+            <div class="mock-bars">
+              <div class="bar"><span class="name">Emergency Runway</span><span class="track"><span class="fill" style="width: 78%"></span></span><span class="val">22</span></div>
+              <div class="bar"><span class="name">Savings Rate</span><span class="track"><span class="fill" style="width: 65%"></span></span><span class="val">35</span></div>
+              <div class="bar"><span class="name">Debt Burden</span><span class="track"><span class="fill" style="width: 28%"></span></span><span class="val">14</span></div>
+              <div class="bar"><span class="name">Income Stability</span><span class="track"><span class="fill" style="width: 40%"></span></span><span class="val">40</span></div>
+              <div class="bar"><span class="name">Spending Volatility</span><span class="track"><span class="fill" style="width: 22%"></span></span><span class="val">22</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <h2>Built for people who already know the basics.</h2>
+        <p class="sub">
+          You don't need a tutorial on budgeting. You need a number you can react to,
+          and a way to prove your actions are working.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="icon">01</div>
+            <h3>One score, no fluff</h3>
+            <p>A 0–100 financial-anxiety index with weighted factors: runway, savings rate, debt, stability, and volatility.</p>
+          </div>
+          <div class="card">
+            <div class="icon">02</div>
+            <h3>Place a bet, get a verdict</h3>
+            <p>Lock in a monthly commitment — save more, cut spending, or pay down debt — and see the predicted vs. actual score.</p>
+          </div>
+          <div class="card">
+            <div class="icon">03</div>
+            <h3>Real records, real math</h3>
+            <p>Log income and expenses by category. The score automatically uses this month's real numbers when available.</p>
+          </div>
+          <div class="card">
+            <div class="icon">04</div>
+            <h3>Charts that say something</h3>
+            <p>Trends, breakdowns, and category mix — built to surface what's actually driving your anxiety, not to look pretty.</p>
+          </div>
+          <div class="card">
+            <div class="icon">05</div>
+            <h3>Multi-currency</h3>
+            <p>USD, EUR, GBP, JPY, CNY, CAD, AUD, CHF, INR, KRW, SGD, HKD. Switch from Settings whenever you travel or move.</p>
+          </div>
+          <div class="card">
+            <div class="icon">06</div>
+            <h3>Receipts & attachments</h3>
+            <p>Attach a photo or take a picture of a receipt and link it to a transaction. Save report images back to Photos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <h2>How it works</h2>
+        <p class="sub">Three steps. No streak guilt, no notifications begging for attention.</p>
+        <div class="steps">
+          <div class="step">
+            <h4>Enter your baseline</h4>
+            <p>Income, monthly expenses, savings, debt, and a quick read on how stable your income and spending are.</p>
+          </div>
+          <div class="step">
+            <h4>Place a bet</h4>
+            <p>Pick an amount and a direction — save more, cut a category, or pay down debt. VFSPEED shows the predicted score.</p>
+          </div>
+          <div class="step">
+            <h4>Check in &amp; resolve</h4>
+            <p>Next month, log a check-in. The bet is settled against the new score with a one-line read on what moved.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="container">
+        <h2>Privacy isn't a feature. It's the foundation.</h2>
+        <p class="sub">VFSPEED is built so your financial data never has to leave your phone.</p>
+        <div class="privacy-callout">
+          <div>
+            <h3>Everything stays on your device.</h3>
+            <p>
+              VFSPEED does not collect, transmit, or sell your financial data.
+              There is no account, no sign-in, no analytics SDK, and no remote storage.
+            </p>
+            <ul>
+              <li>No tracking. NSPrivacyTracking is <strong>false</strong>.</li>
+              <li>No third-party SDKs reading your records.</li>
+              <li>No server. Wipe the app and your data is gone.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>The only permissions we ever ask for</h3>
+            <ul>
+              <li><strong>Photos (read)</strong> — to attach receipts to records.</li>
+              <li><strong>Photos (write)</strong> — to save report images back to your library.</li>
+              <li><strong>Camera</strong> — to capture receipts and documents.</li>
+            </ul>
+            <p style="margin-top: 14px;">
+              Read the full statement:
+              <a href="privacy.html">privacy.html</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <h2>Frequently asked questions</h2>
+        <p class="sub">Quick answers to the things people actually ask before installing.</p>
+
+        <div class="faq-item">
+          <h4>Is my data uploaded anywhere?</h4>
+          <p>No. Your profile, transactions, history, and commitments are stored locally as a single JSON file in Application Support. The app has no remote endpoint.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you use analytics or ads?</h4>
+          <p>No analytics, no ads, no third-party SDKs. The privacy manifest declares no tracking and no data collection.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Why do you need Photos and Camera?</h4>
+          <p>Only to attach a receipt image to a transaction, or to save a chart/report back to your library. You can use the entire app without ever granting either permission.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What happens if I delete the app?</h4>
+          <p>All local data — profile, history, transactions, and commitments — is removed with the app. You can also use Settings → Reset to wipe everything while keeping the app installed.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I export my data?</h4>
+          <p>The data lives in a readable JSON file on your device. A future release may add a one-tap export; for now, contact support if you need a copy.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How is the score calculated?</h4>
+          <p>Five weighted factors: emergency runway (30%), savings rate (25%), debt burden (20%), income stability (15%), and spending volatility (10%). Lower is calmer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="container">
+        <h2>Support</h2>
+        <p class="sub">Need help, found a bug, or want to request a feature? Reach out directly.</p>
+        <div class="support-box">
+          <div>
+            <h3>Contact the developer</h3>
+            <p>VFSPEED is built and maintained by a single developer. Email is the fastest way to reach a real person.</p>
+            <div class="links">
+              <a href="mailto:mahalingamhjk9@icloud.com">mahalingamhjk9@icloud.com</a>
+            </div>
+          </div>
+          <div>
+            <h3>Helpful links</h3>
+            <div class="links">
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="terms.html">Terms of Use</a>
+              <a href="#faq">Frequently Asked Questions</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <h3 style="font-size: 18px; margin-bottom: 12px;">Before you write in, please include</h3>
+          <ul style="color: var(--text-soft); font-size: 14px; padding-left: 18px;">
+            <li>Your iOS version (Settings → General → About).</li>
+            <li>The VFSPEED version (Settings → About in the app).</li>
+            <li>What you expected vs. what happened, with steps to reproduce.</li>
+            <li>Screenshots are welcome — but never include sensitive personal numbers.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <h3 style="font-size: 18px; margin-bottom: 12px;">Response time</h3>
+          <p style="color: var(--text-soft); font-size: 14px;">
+            We aim to reply within 3 business days. Bug reports that include reproduction steps are
+            prioritized over feature requests.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> VFSPEED. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="#support">Support</a>
+        <a href="mailto:mahalingamhjk9@icloud.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

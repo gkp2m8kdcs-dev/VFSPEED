@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — VFSPEED</title>
+  <meta name="description" content="VFSPEED Privacy Policy. VFSPEED does not collect, transmit, or sell your financial data. Everything stays on your device." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --bg-soft: #11141b;
+      --card: #161a23;
+      --border: #232836;
+      --text: #e7eaf1;
+      --text-soft: #9aa3b5;
+      --accent: #6ee7b7;
+      --accent-2: #38bdf8;
+      --radius: 14px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(56, 189, 248, 0.10), transparent 60%),
+                  radial-gradient(900px 600px at 0% 10%, rgba(110, 231, 183, 0.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11, 13, 18, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; letter-spacing: 0.5px; font-size: 18px;
+    }
+    .brand .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--text-soft); }
+    .nav-links a { color: var(--text-soft); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .page-hero {
+      padding: 80px 0 24px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(110, 231, 183, 0.08);
+      border: 1px solid rgba(110, 231, 183, 0.25);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(32px, 4.4vw, 48px);
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      font-weight: 800;
+    }
+    .meta { color: var(--text-soft); font-size: 14px; margin: 0 0 8px; }
+
+    .content {
+      padding: 24px 0 64px;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 36px 0 12px;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 20px 0 8px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    p { margin: 0 0 14px; color: var(--text); font-size: 15px; }
+    ul, ol { color: var(--text); padding-left: 20px; }
+    li { margin-bottom: 6px; font-size: 15px; }
+    strong { color: var(--text); }
+    .callout {
+      background: linear-gradient(180deg, rgba(110, 231, 183, 0.06), transparent 70%), var(--card);
+      border: 1px solid rgba(110, 231, 183, 0.2);
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin: 24px 0;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin: 24px 0 32px;
+    }
+    .toc h3 { margin-top: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-soft); }
+    .toc ol { margin: 0; padding-left: 20px; column-count: 1; }
+    @media (min-width: 640px) { .toc ol { column-count: 2; } }
+    .toc a { color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { color: var(--text-soft); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot"></span>
+        <span>VFSPEED</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#privacy">Privacy</a>
+        <a href="index.html#support">Support</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: <span id="updated">August 17, 2026</span></p>
+        <p class="meta">Effective immediately.</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="callout">
+          <p><strong>The short version:</strong> VFSPEED does not collect, transmit, or sell your financial data. Everything you enter stays on your device. There is no account, no sign-in, no analytics, and no remote storage.</p>
+        </div>
+
+        <div class="toc">
+          <h3>Contents</h3>
+          <ol>
+            <li><a href="#scope">Scope of this policy</a></li>
+            <li><a href="#data-we-collect">Data we collect</a></li>
+            <li><a href="#data-we-dont">Data we explicitly do not collect</a></li>
+            <li><a href="#permissions">Permissions we request</a></li>
+            <li><a href="#storage">Where your data lives</a></li>
+            <li><a href="#third-parties">Third parties</a></li>
+            <li><a href="#children">Children's privacy</a></li>
+            <li><a href="#changes">Changes to this policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ol>
+        </div>
+
+        <h2 id="scope">1. Scope of this policy</h2>
+        <p>
+          This Privacy Policy applies to the VFSPEED mobile application (the "App"), published as
+          <em>VFSPEED</em> for iOS. It describes how the App handles information when you install and
+          use it. By installing or using the App you agree to the terms set out below.
+        </p>
+        <p>
+          This policy does not cover any third-party services you may reach by following an external
+          link from the App. Those services have their own policies.
+        </p>
+
+        <h2 id="data-we-collect">2. Data we collect</h2>
+        <p>
+          The App does not transmit data to us or to any third party. The only data the App stores is
+          data you enter yourself, kept locally on your device. Concretely, this may include:
+        </p>
+        <ul>
+          <li>Your financial profile: monthly income, monthly expenses, total savings, total debt, income stability, and spending volatility.</li>
+          <li>Transactions you log: amount, category, note, and date.</li>
+          <li>Monthly check-in history (up to 12 months): year, month, anxiety score, income, and expenses.</li>
+          <li>Commitments ("bets"): kind, amount, predicted vs. actual score, timestamps, and resolution.</li>
+          <li>Your currency preference (e.g. USD, EUR, CNY).</li>
+          <li>Receipt or document images you choose to attach to a transaction, which remain on your device.</li>
+        </ul>
+        <p>
+          None of the above is sent off the device by the App. You can verify this by using the App
+          with the device in airplane mode.
+        </p>
+
+        <h2 id="data-we-dont">3. Data we explicitly do not collect</h2>
+        <ul>
+          <li>No name, email, phone number, or contact list.</li>
+          <li>No location, advertising ID, or device fingerprint.</li>
+          <li>No usage analytics, crash reports, or A/B test telemetry.</li>
+          <li>No advertising or marketing identifiers.</li>
+          <li>No purchase history or payment information.</li>
+        </ul>
+        <p>
+          The App's <code>PrivacyInfo.xcprivacy</code> manifest declares
+          <strong>NSPrivacyTracking = false</strong>, an empty
+          <strong>NSPrivacyTrackingDomains</strong> array, and an empty
+          <strong>NSPrivacyCollectedDataTypes</strong> array.
+        </p>
+
+        <h2 id="permissions">4. Permissions we request</h2>
+        <p>The App requests the following system permissions, and only when needed:</p>
+
+        <h3>Photos — read access (<code>NSPhotoLibraryUsageDescription</code>)</h3>
+        <p>
+          Used only when you choose to attach a photo to a transaction or record. The App does not
+          scan or upload your photo library. If you grant limited access, only the specific items you
+          select are accessible.
+        </p>
+
+        <h3>Photos — write access (<code>NSPhotoLibraryAddUsageDescription</code>)</h3>
+        <p>
+          Used only when you tap "Save to Photos" on a report or chart image. The App writes only the
+          image you explicitly choose to save.
+        </p>
+
+        <h3>Camera (<code>NSCameraUsageDescription</code>)</h3>
+        <p>
+          Used only when you tap the in-app camera control to capture a receipt or document. The App
+          does not record video or audio.
+        </p>
+
+        <p>
+          You can decline any of these permissions and continue to use every other feature of the
+          App. Permission status is checked at the point of use and is never collected or transmitted.
+        </p>
+
+        <h2 id="storage">5. Where your data lives</h2>
+        <p>
+          All App data is stored on your device inside the App's sandboxed Application Support
+          directory, in a single JSON file (<code>store.json</code>) managed by the App. Photos and
+          documents you import live in your system Photos library under your control.
+        </p>
+        <p>
+          You may delete your data at any time:
+        </p>
+        <ul>
+          <li><strong>In-app:</strong> Settings → Reset wipes the profile, history, transactions, and commitments.</li>
+          <li><strong>By uninstalling:</strong> Removing the App from your device deletes its sandboxed storage.</li>
+          <li><strong>iCloud / device backups:</strong> Standard iOS backup behaviour applies. You can exclude this App's data from backups via your device Settings.</li>
+        </ul>
+
+        <h2 id="third-parties">6. Third parties</h2>
+        <p>
+          The App does not embed third-party analytics, advertising, social, payment, or crash-reporting
+          SDKs. The App does not contact any third-party domain at runtime.
+        </p>
+
+        <h2 id="children">7. Children's privacy</h2>
+        <p>
+          The App is intended for users aged 16 and over. It does not knowingly collect any
+          information from children under 13 (or under the age required by your local law). Because no
+          data is collected at all, this principle is enforced by design.
+        </p>
+
+        <h2 id="changes">8. Changes to this policy</h2>
+        <p>
+          If this policy is materially updated, the change will be listed in the App's release notes
+          and the "Last updated" date at the top of this page will be revised. Continued use of the
+          App after an update indicates acceptance of the revised policy.
+        </p>
+
+        <h2 id="contact">9. Contact</h2>
+        <p>
+          Questions, concerns, or requests about this Privacy Policy can be sent to:
+        </p>
+        <p>
+          <a href="mailto:mahalingamhjk9@icloud.com">mahalingamhjk9@icloud.com</a>
+        </p>
+        <p>
+          We aim to respond within 3 business days.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> VFSPEED. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms</a>
+        <a href="index.html#support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
